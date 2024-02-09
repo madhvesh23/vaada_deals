@@ -883,7 +883,7 @@
 
     window.onscroll = function () {
         scrollFunction();
-        stickyNavbar();
+        // stickyNavbar();
 
     };
 
@@ -935,22 +935,33 @@
     }
 
 
-    const navbar = document.querySelector(".card");
-if (navbar) {
-  const sticky = navbar.offsetTop;
-console.log(sticky)
-  function stickyNavbar() {
+    let ticking = false;
+
+window.addEventListener('scroll', function() {
+  if (!ticking) {
+    requestAnimationFrame(function() {
+      stickyNavbar();
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+function stickyNavbar() {
+  const navbar = document.querySelector(".card");
+  if (navbar) {
+    const sticky = navbar.offsetTop;
+
     if (window.pageYOffset > sticky) {
       navbar.classList.add("sticky");
     } else {
       navbar.classList.remove("sticky");
     }
+  } else {
+    console.error("Navbar element not found.");
   }
-
- 
-} else {
-  console.error("Navbar element not found.");
 }
+
 
 
 </script>
