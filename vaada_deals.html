@@ -34,14 +34,20 @@
         }
 
         .card {
-            background: rgb(255 255 255) !important;
-            position: fixed !important;
             top: 0 !important;
             z-index: 20;
             border-radius: 0 !important;
             backdrop-filter: blur(9px);
+            margin: 0px 0px 8px 0px;
+        }
+        
+        .card.sticky {
+            position: fixed;
+            background: rgb(255 255 255) !important;
             box-shadow: 0px 0px 12px 0px #8080803d;
-            margin: 0px 0px 0px -3px;
+            top: 0;
+            width: 100%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .clientCard {
@@ -52,8 +58,7 @@
         #map {
             height: 450px;
             width: 100%;
-            border: 3px solid darkgray;
-    margin-top: 103px;
+            border: 1px solid darkgray;
         }
 
         .item {
@@ -101,7 +106,7 @@
             align-items: center;
             background-color: white;
             border: 1px solid #a9a9a98a;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .grid-item img {
@@ -148,8 +153,41 @@
             background: rgb(0 0 0 / .2);
             transition: ease-in-out 5ms;
         }
-        .mobile-setup{
+
+        .mobile-setup {
             margin-top: 50px;
+        }
+
+
+        .filter-bar {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .filter-bar .col-md-6 {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-new-bar {
+            flex: 1;
+        }
+
+        .select-menu {
+            flex: 1;
+            margin: 0px 10px;
+        }
+
+        .form-outline {
+            flex: 1;
+            margin: 0px 10px;
+            width: 90%;
+        }
+
+        .map-display {
+            margin-bottom: 6px;
         }
 
         @media(max-width: 765px) {
@@ -166,16 +204,42 @@
         /* mobile version */
         @media (max-width: 572px) {
 
-            .map-display{
-                margin-bottom: 10px;
+            .map-display {
+                margin-bottom: 5px;
                 padding: 0px;
+                border: 2px solid #0000003e;
             }
+
+
             #map {
-            height: 310px;
-            width: 100%;
-            border: none;
-            margin-top: 103px;
-        }
+                height: 310px;
+                width: 100%;
+                border: none;
+            }
+
+
+            .filter-bar .col-md-6 {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-bar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .select-menu {
+                margin-bottom: 10px;
+            }
+
+            .card-body {
+                padding: 13px 20px 13px 20px;
+                width: 91%;
+            }
+
             .container-fluid {
                 width: 65vh;
             }
@@ -243,7 +307,7 @@
 
         @media(max-width:480px) {
             .grid-item img {
-                height: 145px;
+                height: 142px;
                 position: relative;
                 top: -5px;
             }
@@ -260,6 +324,10 @@
                 padding: 0 3px;
                 font-size: 11px;
                 line-height: 14px
+            }
+
+            .mobile-setup {
+                padding: 0px 25px 0px 17px !important;
             }
 
         }
@@ -317,9 +385,14 @@
                 color: black !important;
                 font-size: 9px !important;
             }
+
             #map {
-            height: 250px;
-        }
+                height: 250px;
+            }
+
+            .mobile-setup {
+                padding: 0px 18px 0px 17px !important;
+            }
         }
 
         @media (max-width: 445px) {
@@ -334,6 +407,10 @@
 
             .grid-item {
                 height: 201px;
+            }
+
+            .mobile-setup {
+                padding: 0px 17px 0px 17px !important;
             }
         }
 
@@ -357,6 +434,10 @@
 
             .container-fluid {
                 padding: 0px 16px 0px 16.7px !important;
+            }
+
+            .mobile-setup {
+                padding: 0px 16px 0px 16px !important;
             }
         }
 
@@ -387,6 +468,10 @@
                 margin: 6px 0px 7px 0px;
             }
 
+            .mobile-setup {
+                padding: 0px 17px 0px 15px !important;
+            }
+
         }
 
         @media (max-width:370px) {
@@ -410,6 +495,10 @@
 
             .grid-container {
                 margin-left: -12px;
+            }
+
+            .mobile-setup {
+                padding: 0px 12px 0px 17px !important;
             }
         }
 
@@ -451,7 +540,7 @@
 
         #searchInput {
             border-radius: 0 !important;
-            width: 95%;
+            width: 100%;
         }
 
         #loading {
@@ -479,7 +568,7 @@
         }
 
         .select-menu {
-            width: 95%;
+            width: 90%;
         }
 
         input::placeholder {
@@ -497,6 +586,7 @@
             margin: 0px 0px 10px 0px;
             border: 1px solid #a8a8a85c;
             height: 37px;
+            margin-bottom: 0px;
         }
 
         #cat-name {
@@ -557,14 +647,6 @@
             outline: none;
             display: none;
         }
-
-        /* iframe {
-            border: 3px solid #00000082;
-            height: 112%;
-            margin-top: 111px;
-
-        } */
-        
     </style>
 
 </head>
@@ -576,7 +658,7 @@
             <!-- ============================================================== -->
             <!-- Map Section Start -->
             <!-- ============================================================== -->
-            <div class=" map-display col-12 mt-3 px-md-0">
+            <div class=" map-display col-12 mt-1 px-md-0">
                 <div id="map">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11459.9464920065!2d-70.2021159!3d44.104268!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e59411d1563%3A0xfe4558290938b042!2sSurat%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1704538054789!5m2!1sen!2sin"
@@ -593,8 +675,8 @@
                     <div class="card bg-transparent border-0">
                         <div class="card-body">
                             <div class="col-12 style={padding: 0px 11px;}">
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-md-6 col-12 px-md-0">
+                                <div class="filter-bar">
+                                    <div class=" filter-new-bar col-md-6 col-12 px-md-0">
                                         <div class="select-menu">
                                             <div class="select-head">
                                                 <div class="select-main" id="customDropdownToggle">
@@ -608,10 +690,10 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="form-outline">
-                                            <input type="search" id="searchInput" class="form-control"
-                                                placeholder="🔍 Type product or service here" aria-label="Search" />
-                                        </div>
+                                    </div>
+                                    <div class="form-outline">
+                                        <input type="search" id="searchInput" class="form-control"
+                                            placeholder="🔍 Type product or service here" aria-label="Search" />
                                     </div>
                                 </div>
                             </div>
@@ -763,7 +845,7 @@
     });
 
 
-   
+
 
 
     // var scrollPosition = 0;
@@ -801,6 +883,8 @@
 
     window.onscroll = function () {
         scrollFunction();
+        stickyNavbar();
+
     };
 
     function scrollFunction() {
@@ -849,9 +933,29 @@
             }
         })
     }
-    
+
+
+    const navbar = document.querySelector(".card");
+if (navbar) {
+  const sticky = navbar.offsetTop;
+console.log(sticky)
+  function stickyNavbar() {
+    if (window.pageYOffset > sticky) {
+      navbar.classList.add("sticky");
+    } else {
+      navbar.classList.remove("sticky");
+    }
+  }
+
+ 
+} else {
+  console.error("Navbar element not found.");
+}
+
+
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjnsYdRjS-ZnEweZ_6hw-gvuHNBC4UOyQ&callback=initMap" asyncdefer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjnsYdRjS-ZnEweZ_6hw-gvuHNBC4UOyQ&callback=initMap"
+    asyncdefer></script>
 
 </html>
 
